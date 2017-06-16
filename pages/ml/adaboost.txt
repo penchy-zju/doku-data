@@ -1,2 +1,2 @@
 =======Adaboost 算法过程及细节=======
-{{:ml:adaboost_algrithm.png|}}
+{{:ml:adaboost_algorithm.png|}}
