@@ -7,3 +7,11 @@
 1497584213	123.58.160.131	E	ml:adaboost	penchy			30
 1497584491	123.58.160.131	E	ml:adaboost	penchy			1
 1497598368	123.58.160.131	C	dl:cnn	penchy	创建		19
+1497611609	123.58.160.131	C	sidebar	penchy	创建		19
+1497612571	123.58.160.131	E	sidebar	penchy			-11
+1497613198	123.58.160.131	E	sidebar	penchy			27
+1497614413	123.58.160.131	E	sidebar	penchy			-20
+1497614477	123.58.160.131	R	sidebar	penchy	已恢复为旧版 (2017/06/16 11:39)	1497613198	20
+1497616883	123.58.160.131	E	ml:adaboost	penchy			375
+1497618212	123.58.160.131	E	ml:adaboost	penchy	[算法流程] 		1119
+1497618273	123.58.160.131	E	ml:adaboost	penchy	[算法流程] 		-1
