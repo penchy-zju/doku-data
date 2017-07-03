@@ -1,1 +1,35 @@
 ====== PlayGround ======
+
+<jumbotron>
+This is a simple hero unit, a simple jumbotron-style 
+component for calling extra attention to featured
+content or information.
+</jumbotron>
+
+<panel type="default" title="Title of Panel" subtitle="Subtitle" icon="fa fa-home">
+Panel content
+</panel>
+
+<alert type="warning" icon="glyphicon glyphicon-user" dismiss="false">
+**Well done!** You successfully read this important alert message.
+</alert>
+
+
+  * <text type="muted">muted</text>
+  * <text type="primary">primary</text>
+  * <text type="success">success</text>
+  * <text type="info">info</text>
+  * <text type="warning">warning</text>
+  * <text type="danger">danger</text>
+
+
+<tooltip title="Sample Text" location="bottom">Lorem ipsum</tooltip> dolor sit amet...
+
+
+
+
+
+<well>Look, I'm in a well!</well>
+
+
+<button type="success" size="lg" icon="glyphicon glyphicon-edit">[[:wiki:welcome]]</button>

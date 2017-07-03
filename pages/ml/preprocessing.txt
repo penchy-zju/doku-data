@@ -1,4 +1,22 @@
-======= sklearn之数据预处理及特征选择 =======
+======= Scikit-learn之数据预处理及特征选择 =======
+''Scikit-learn''作为一款开源免费的机器学习''python''库，受到了非常广泛的欢迎，
+这个原作为''2007''年''Google Summer of Code''上的项目经过近十年的发展，也在''2017-06-20''
+迎来了自己最新的一个稳定版：''0.18.2''，但本文中所有的''scikit-learn''代码基于''0.18.1''，
+一般而言，本文中的所有代码也都可以在最新的版本中正确运行。
+\\
+\\
+本文主要介绍如何使用''Scikit-learn''在机器学习的数据准备阶段进行处理，包括但不限于特征抽取，
+数据预处理以及特征选择；每一段代码都试图保证可以运行，文中的环境如下：
+  * ''python - 2.7.13''
+  * ''numpy - 1.11.3''
+  * ''scikit-learn - 0.18.1''
+
 ===== 特征提取 =====
 ===== 数据预处理 =====
 ===== 特征选择 =====
+
+===== Reference =====
+  * [[http://scikit-learn.org/stable/modules/feature_extraction.html | Feature extraction]]
+  * [[http://scikit-learn.org/stable/modules/preprocessing.html | Preprocessing data]]
+  * [[http://scikit-learn.org/stable/modules/feature_selection.html | Feature selection]]
+  * [[http://playground.tensorflow.org | A Neural Network Playground]]
