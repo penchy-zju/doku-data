@@ -10,6 +10,8 @@ content or information.
 Panel content
 </panel>
 
+<alert type="success" icon="glyphicon glyphicon-home">按按</alert>
+
 <alert type="warning" icon="glyphicon glyphicon-user" dismiss="false">
 **Well done!** You successfully read this important alert message.
 </alert>
@@ -23,7 +25,7 @@ Panel content
   * <text type="danger">danger</text>
 
 
-<tooltip title="Sample Text" location="bottom">Lorem ipsum</tooltip> dolor sit amet...
+<tooltip title="Sample Text">Lorem ipsum</tooltip> dolor sit amet...
 
 
 

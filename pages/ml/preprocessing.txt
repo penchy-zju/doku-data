@@ -12,9 +12,59 @@
   * ''scikit-learn - 0.18.1''
 
 ===== 特征提取 =====
-===== 数据预处理 =====
-===== 特征选择 =====
+''sklearn.feature_extraction''包提供用于从文本或者图像中抽取特征的工具，抽取的特征以方便机器学习算法应用的形式存在。
+==== 从字典载入数据 ====
+使用''DictVectorizer''可以轻松从''python''字典载入数据，并将之转化为适合于''Scikit-learn''中的''estimators''对象，如下例所示：
+<code python>
+measurements = [
+    {'city': 'Dubai', 'temperature': 33.},
+    {'city': 'London', 'temperature': 12.},
+    {'city': 'San Fransisco', 'temperature': 18.},
+]
 
+from sklearn.feature_extraction import DictVectorizer
+vec = DictVectorizer()
+
+vec.fit_transform(measurements).toarray()
+# array([[  1.,   0.,   0.,  33.],
+#       [  0.,   1.,   0.,  12.],
+#       [  0.,   0.,   1.,  18.]])
+
+vec.get_feature_names()
+# ['city=Dubai', 'city=London', 'city=San Fransisco', 'temperature']
+</code>
+如上代码所示，对于字典中的类别属性，''DictVectorizer''会对该属性进行''one-hot''编码，即对于''N''个值得类别属性会编码为''N''位的二进制码，对应位如果是''1''表示是该类别属性，反之则为''0''。
+
+==== 文本特征抽取 ====
+=== BoW ===
+
+=== TF-IDF ===
+
+===== 数据预处理 =====
+''sklearn.preprocessing''包提供了机器学习数据预处理的绝大部分工具，使用这些工具可以轻松对数据进行处理，以便使机器学习模型达到最好的效果。
+==== 标准化 ====
+
+==== 归一化 ====
+<alert type="info" icon="glyphicon glyphicon-hand-right">标准化针对数据的某一维度进行操作，而归一化则针对单一数据点的所有维度进行操作。</alert>
+==== 二值化 ====
+
+==== 缺省值处理 ====
+
+==== 类别属性编码 ====
+
+==== 多项式特征处理 ====
+
+<alert type="warning" icon="glyphicon glyphicon-question-sign">为什么特征多项式处理后会起作用，它的原理是什么？</alert>
+===== 特征选择 =====
+''sklearn.feature_selection''包可应用于特征选择，或为提高学习精度，或为提高高维数据下的学习效率。
+
+==== 过滤低方差特征 ====
+
+==== 单变量特征选择 ====
+
+==== 递归特征选择 ====
+
+==== 使用模型进行特征选择 ====
 ===== Reference =====
   * [[http://scikit-learn.org/stable/modules/feature_extraction.html | Feature extraction]]
   * [[http://scikit-learn.org/stable/modules/preprocessing.html | Preprocessing data]]

@@ -1,27 +1,21 @@
-1497530058	123.58.160.131	C	ml	penchy	创建		26
-1497530114	123.58.160.131	C	ml:adaboosting	penchy	创建		25
-1497581705	123.58.160.131	E	ml:adaboosting	penchy			18
-1497581705	127.0.0.1	E	ml:adaboost		外部编辑		43
-1497581957	123.58.160.131	E	ml:adaboost	penchy			34
-1497583393	123.58.160.131	E	ml:adaboost	penchy			-32
-1497584213	123.58.160.131	E	ml:adaboost	penchy			30
-1497584491	123.58.160.131	E	ml:adaboost	penchy			1
-1497598368	123.58.160.131	C	dl:cnn	penchy	创建		19
-1497611609	123.58.160.131	C	sidebar	penchy	创建		19
-1497612571	123.58.160.131	E	sidebar	penchy			-11
-1497613198	123.58.160.131	E	sidebar	penchy			27
-1497614413	123.58.160.131	E	sidebar	penchy			-20
-1497614477	123.58.160.131	R	sidebar	penchy	已恢复为旧版 (2017/06/16 11:39)	1497613198	20
-1497616883	123.58.160.131	E	ml:adaboost	penchy			375
 1497618212	123.58.160.131	E	ml:adaboost	penchy	[算法流程] 		1119
 1497618273	123.58.160.131	E	ml:adaboost	penchy	[算法流程] 		-1
 1497837245	123.58.160.131	E	ml:adaboost	penchy	[算法流程] 		145
 1498115035	123.58.160.131	C	ml:preprocessing	penchy	创建		135
 1499047946	123.58.160.131	E	ml:preprocessing	penchy	[sklearn之数据预处理及特征选择] 		748
 1499048302	123.58.160.131	E	ml:preprocessing	penchy	[特征选择] 		362
-1488917619	127.0.0.1	E	playground:playground		外部编辑		25
 1499050694	123.58.160.131	E	playground:playground	penchy			888
 1499050732	123.58.160.131	E	playground:playground	penchy	[Hello, world!] 		1
 1499050894	123.58.160.131	E	ml:preprocessing	penchy			24
 1499050940	123.58.160.131	E	ml:preprocessing	penchy			-24
 1499056251	123.58.160.131	E	playground:playground	penchy			-27
+1499071525	123.58.160.131	E	ml:preprocessing	penchy	[特征提取] 		1007
+1499071974	123.58.160.131	E	ml:preprocessing	penchy	[数据预处理] 		347
+1499072142	123.58.160.131	E	ml:preprocessing	penchy	[特征提取] 		160
+1499072312	123.58.160.131	E	ml:preprocessing	penchy	[特征选择] 		269
+1499073151	123.58.160.131	E	ml:preprocessing	penchy	[归一化] 		154
+1499073449	123.58.160.131	E	ml:preprocessing	penchy	[归一化] 		22
+1499073975	123.58.160.131	E	ml:preprocessing	penchy	[归一化] 		0
+1499074043	123.58.160.131	E	ml:preprocessing	penchy	[归一化] 		6
+1499083065	123.58.160.131	E	playground:playground	penchy			52
+1499152403	123.58.160.131	E	ml:preprocessing	penchy	[多项式特征处理] 		144

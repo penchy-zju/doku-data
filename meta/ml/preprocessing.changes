@@ -3,3 +3,12 @@
 1499048302	123.58.160.131	E	ml:preprocessing	penchy	[特征选择] 		362
 1499050894	123.58.160.131	E	ml:preprocessing	penchy			24
 1499050940	123.58.160.131	E	ml:preprocessing	penchy			-24
+1499071525	123.58.160.131	E	ml:preprocessing	penchy	[特征提取] 		1007
+1499071974	123.58.160.131	E	ml:preprocessing	penchy	[数据预处理] 		347
+1499072142	123.58.160.131	E	ml:preprocessing	penchy	[特征提取] 		160
+1499072312	123.58.160.131	E	ml:preprocessing	penchy	[特征选择] 		269
+1499073151	123.58.160.131	E	ml:preprocessing	penchy	[归一化] 		154
+1499073449	123.58.160.131	E	ml:preprocessing	penchy	[归一化] 		22
+1499073975	123.58.160.131	E	ml:preprocessing	penchy	[归一化] 		0
+1499074043	123.58.160.131	E	ml:preprocessing	penchy	[归一化] 		6
+1499152403	123.58.160.131	E	ml:preprocessing	penchy	[多项式特征处理] 		144
