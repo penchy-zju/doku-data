@@ -37,24 +37,155 @@ vec.get_feature_names()
 
 ==== 文本特征抽取 ====
 === BoW ===
+词袋模型''Bag of Words''在文本分析中的应用十分普遍，使用''scikit-learn''可以方便的从文本中获取到词袋模型特征，这个过程包括以下三个步骤：
+  * ''Tokenizing''，对于英文文本来说，一般单词用空格隔开，可以方便的获取到''token''，对于中文来说，需要借助一定的分词工具才能获取到''token''；
+  * ''Counting''，获取到文本''token''以后需要进一步获取各个''token''出现的次数；
+  * ''Normalizing''，归一化，需要对不同''token''的权重进行归一化；
+通过词袋模型，就可以把一段文本变化为一个向量，进一步应用于聚类、分类等场景。如下例所示：
+<code python>
+from sklearn.feature_extraction.text import CountVectorizer
 
+vectorizer = CountVectorizer(min_df=1)
+corpus = [
+    'This is the first document.',
+    'This is the second second document.',
+    'And the third one.',
+    'Is this the first document?',
+]
+X = vectorizer.fit_transform(corpus)
+vectorizer.get_feature_names() == (
+     ['and', 'document', 'first', 'is', 'one',
+     'second', 'the', 'third', 'this'])
+# True
+
+X.toarray()           
+# array([[0, 1, 1, 1, 0, 0, 1, 0, 1],
+#        [0, 1, 0, 1, 0, 2, 1, 0, 1],
+#        [1, 0, 0, 0, 1, 0, 1, 1, 0],
+#        [0, 1, 1, 1, 0, 0, 1, 0, 1]]...)
+</code>
 === TF-IDF ===
+''TF-IDF''是建立在词袋模型之上的文本特征处理方法，其计算包括以下几个步骤：
+  * 逆文档频率计算：''idf(t)=log{(1+n<sub>d</sub>)/(1+df(d,t))}+1''，其中''n<sub>d</sub>''表示总的文档数量，''df(d,t)''表示包含单词''t''的文档的数量；由该公式可以得知，如果一个词在所有文档中都出现过，那么它的逆文档频率值最小；
+  * ''TF-IDF''的计算通过词频与逆文档频率相乘获得；
+  * 在获取了一个文档的''TF-IDF''特征后，需要进一步的进行归一化，一般使用''l<sub>2</sub>''进行归一化；
+在''scikit-learn''中，''TfidfTransformer''和''TfidfVectorizer''都可以用来获取文档的''TF-IDF''特征，不同的是，前者输入的是词袋模型向量化后的数据，而后者直接可以通过文本中获取特征，如下例所示：
+<code python>
+from sklearn.feature_extraction.text import TfidfTransformer
+transformer = TfidfTransformer(smooth_idf=False)
+
+counts = [[3, 0, 1],
+          [2, 0, 0],
+          [3, 0, 0],
+          [4, 0, 0],
+          [3, 2, 0],
+          [3, 0, 2]]
+
+tfidf = transformer.fit_transform(counts)
+tfidf.toarray() 
+# array([[ 0.81940995,  0.        ,  0.57320793],
+#        [ 1.        ,  0.        ,  0.        ],
+#        [ 1.        ,  0.        ,  0.        ],
+#        [ 1.        ,  0.        ,  0.        ],
+#        [ 0.47330339,  0.88089948,  0.        ],
+#        [ 0.58149261,  0.        ,  0.81355169]])
+</code>
+
+<alert type="info" icon="glyphicon glyphicon-hand-right">
+词袋模型的缺点在于忽略了文本的先后顺序，且对错误拼写敏感；前文中描述的词袋模型其实是基于''1-grams''，而通过调整''CountVectorizer''对象的''ngram_range''参数可以达到''N-grams''的效果，以缓解词袋模型的不足。
+</alert>
 
 ===== 数据预处理 =====
 ''sklearn.preprocessing''包提供了机器学习数据预处理的绝大部分工具，使用这些工具可以轻松对数据进行处理，以便使机器学习模型达到最好的效果。
 ==== 标准化 ====
-
+标准化意在使数据服从标准的正态分布，即均值为''0''，方差为''1''，如下：
+<code python>
+from sklearn import preprocessing
+import numpy as np
+X = np.array([[ 1., -1.,  2.],
+              [ 2.,  0.,  0.],
+              [ 0.,  1., -1.]])
+scaler = preprocessing.StandardScaler().fit(X)
+scaler.transform(X)
+# array([[ 0.  ..., -1.22...,  1.33...],
+#        [ 1.22...,  0.  ..., -0.26...],
+#        [-1.22...,  1.22..., -1.06...]])
+</code>
+其对每一维度的数据依据公式''x=(x-x<sub>mean</sub>)/v''进行变换；
+\\  \\ 
+另外一种常用的数据预处理方式是将某一维度的数据全部变换到某一个范围里，''scikit-learn''中可以方便的使用''MinMaxScaler''和''MaxAbsScaler''实现，前者变换到''[0,1]''，后者变换到''[-1,1]''。
 ==== 归一化 ====
+归一化使单一数据点变换到单位范数，如下例：
+<code python>
+X = [[ 1., -1.,  2.],
+     [ 2.,  0.,  0.],
+     [ 0.,  1., -1.]]
+
+normalizer = preprocessing.Normalizer().fit(X)
+normalizer.transform(X)  
+# array([[ 0.40..., -0.40...,  0.81...],
+#        [ 1.  ...,  0.  ...,  0.  ...],
+#        [ 0.  ...,  0.70..., -0.70...]])
+</code>
+
 <alert type="info" icon="glyphicon glyphicon-hand-right">标准化针对数据的某一维度进行操作，而归一化则针对单一数据点的所有维度进行操作。</alert>
 ==== 二值化 ====
-
+''scikit-learn''中使用''Binarizer''实现数值二值化，可以自定义指定阈值：
+<code python>
+X = [[ 1., -1.,  2.],
+     [ 2.,  0.,  0.],
+     [ 0.,  1., -1.]]
+     
+binarizer = preprocessing.Binarizer(threshold=1.1)
+binarizer.transform(X)
+# array([[ 0.,  0.,  1.],
+#        [ 1.,  0.,  0.],
+#        [ 0.,  0.,  0.]])
+</code>
 ==== 缺省值处理 ====
-
+缺省值处理使用''Imputer''，可以指定缺省值为当前行或者列的最大值、最小值、均值、中值等：
+<code python>
+import numpy as np
+from sklearn.preprocessing import Imputer
+imp = Imputer(missing_values='NaN', strategy='mean', axis=0)
+imp.fit([[1, 2], [np.nan, 3], [7, 6]])
+# Imputer(axis=0, copy=True, missing_values='NaN', strategy='mean', verbose=0)
+X = [[np.nan, 2], [6, np.nan], [7, 6]]
+print(imp.transform(X)) 
+# [[ 4.          2.        ]
+#  [ 6.          3.666...]
+#  [ 7.          6.        ]]
+</code>
 ==== 类别属性编码 ====
-
+类别属性可以通过''OneHotEncoder''进行二进制编码：
+<code python>
+enc = preprocessing.OneHotEncoder()
+enc.fit([[0, 0, 3], [1, 1, 0], [0, 2, 1], [1, 0, 2]])  
+# OneHotEncoder(categorical_features='all', dtype=<... 'numpy.float64'>,
+#        handle_unknown='error', n_values='auto', sparse=True)
+enc.transform([[0, 1, 3]]).toarray()
+# array([[ 1.,  0.,  0.,  1.,  0.,  0.,  0.,  0.,  1.]])
+</code>
 ==== 多项式特征处理 ====
+有时候为了得到一些更加复杂的特征，可以通过多项式生成的方法获取新的特征，以获取特征之间的非线性性，''PolynomialFeatures''可以方便实现：
+<code python>
+import numpy as np
+from sklearn.preprocessing import PolynomialFeatures
+X = np.arange(6).reshape(3, 2)
+X                                                 
+# array([[0, 1],
+#        [2, 3],
+#        [4, 5]])
+poly = PolynomialFeatures(2)
+poly.fit_transform(X)                             
+# array([[  1.,   0.,   1.,   0.,   0.,   1.],
+#        [  1.,   2.,   3.,   4.,   6.,   9.],
+#        [  1.,   4.,   5.,  16.,  20.,  25.]])
+</code>
+以上将特征''(x<sub>1</sub>, x<sub>2</sub>)''，变换为''(1, x<sub>1</sub>, x<sub>2</sub>, x<sub>1</sub><sup>2</sup>, x<sub>1</sub>x<sub>2</sub>, x<sub>2</sub><sup>2</sup>)''，如果只需要特征间的交叉获取的新特征，则只需要对''PolynomialFeatures''指定参数''interaction_only=True''，如果不需要常数项，则指定参数''include_bias=False''。
 
-<alert type="warning" icon="glyphicon glyphicon-question-sign">为什么特征多项式处理后会起作用，它的原理是什么？</alert>
+
+<alert type="warning" icon="glyphicon glyphicon-hand-right">为什么特征多项式处理后会起作用，它的原理是什么？</alert>
 ===== 特征选择 =====
 ''sklearn.feature_selection''包可应用于特征选择，或为提高学习精度，或为提高高维数据下的学习效率。
 
