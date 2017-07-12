@@ -190,12 +190,96 @@ poly.fit_transform(X)
 ''sklearn.feature_selection''包可应用于特征选择，或为提高学习精度，或为提高高维数据下的学习效率。
 
 ==== 过滤低方差特征 ====
-
+通过分别计算每一个数据维度上的方差，去除一些方差小于阈值的维度，完成特征选择。''VarianceThresh''可以完成这一工作，默认情况下，所有方差为''0''的特征都会被筛除，比如某一维度上全是同一数值的特征。
+<code python>
+from sklearn.feature_selection import VarianceThreshold
+X = [[0, 0, 1], [0, 1, 0], [1, 0, 0], [0, 1, 1], [0, 1, 0], [0, 1, 1]]
+sel = VarianceThreshold(threshold=(.8 * (1 - .8)))
+sel.fit_transform(X)
+# array([[0, 1],
+#        [1, 0],
+#        [0, 0],
+#        [1, 1],
+#        [1, 0],
+#        [1, 1]])
+</code>
 ==== 单变量特征选择 ====
-
+单变量的统计测试也可以用来做特征选择，在''scikit-learn''中，这种特征选择的方法使用像使用了一个基学习器(''base estimator'')，实现了''trandform''接口，进而在此基础上完成特征选择。常用的有：
+  * ''SelectKBest''，用来选择''K''个得分最高的特征；
+  * ''SelectPercentile''，用来筛选满足用户指定得分分数百分比的特征；
+前者选择固定数量的特征，而后者则是不固定数量的。
+<code python>
+from sklearn.datasets import load_iris
+from sklearn.feature_selection import SelectKBest
+from sklearn.feature_selection import chi2
+iris = load_iris()
+X, y = iris.data, iris.target
+X.shape
+# (150, 4)
+X_new = SelectKBest(chi2, k=2).fit_transform(X, y)
+X_new.shape
+# (150, 2)
+</code>
+上例中使用卡方测试来选择最好的两个特征，在''scikit-learn''中，面对分类和回归需要使用不同的方法来做特征选择：
+  * 回归：''f_regression'', ''mutual_info_regression''
+  * 分类：''chi2'',''f_classif'', ''mutual_info_classif''
+<alert type="danger" icon="glyphicon glyphicon-hand-right">
+如果面对的是分类问题，那么不能选用回归函数去做特征选择，不然结果毫无意义！
+</alert>
 ==== 递归特征选择 ====
+递归特征选择的流程是这样的：首先选定一个基学习器，可以对特征进行打分；然后使用该学习器在训练集中使用全部特征进行训练，然后剔除特征得分绝对值最小的那一维特征继续训练，如此循环往复，完成特征选择。\\ 
+''RFE''和''RFECV''都可以完成这项工作，不过后者比前者多了交叉验证；
+<code python>
+from sklearn.svm import SVC
+from sklearn.datasets import load_digits
+from sklearn.feature_selection import RFE
 
+# Load the digits dataset
+digits = load_digits()
+X = digits.images.reshape((len(digits.images), -1))
+y = digits.target
+
+svc = SVC(kernel="linear", C=1)
+rfe = RFE(estimator=svc, n_features_to_select=1, step=1)
+rfe.fit_transform(X, y)
+# (1797L, 1L)
+</code>
 ==== 使用模型进行特征选择 ====
+''SelectFromModel''可以用来配合任何包含''coef_''或者''feature_importances_''属性的学习器来完成特征选择。特别的，当提供的学习器使用了''L<sub>1</sub>''约束时，''SelectFromModel''可以选择一些打分为非''0''的特征，此时特征选择的得分阈值默认是''0.00001''，即''1e-5''。
+<code python>
+from sklearn.svm import LinearSVC
+from sklearn.datasets import load_iris
+from sklearn.feature_selection import SelectFromModel
+iris = load_iris()
+X, y = iris.data, iris.target
+X.shape
+# (150, 4)
+lsvc = LinearSVC(C=0.01, penalty="l1", dual=False).fit(X, y)
+model = SelectFromModel(lsvc, prefit=True)
+X_new = model.transform(X)
+X_new.shape
+# (150, 3)
+</code>
+\\ 
+''scikit-learn''集成学习包里的一些树模型可以计算特征的重要程度，也可以用来完成特征选择：
+<code python>
+from sklearn.ensemble import ExtraTreesClassifier
+from sklearn.datasets import load_iris
+from sklearn.feature_selection import SelectFromModel
+iris = load_iris()
+X, y = iris.data, iris.target
+X.shape
+# (150, 4)
+clf = ExtraTreesClassifier()
+clf = clf.fit(X, y)
+clf.feature_importances_  
+# array([ 0.04...,  0.05...,  0.4...,  0.4...])
+model = SelectFromModel(clf, prefit=True)
+X_new = model.transform(X)
+X_new.shape
+# (150, 2)
+</code>
+在上面代码中，筛选特征的打分阈值其实是所有特征得分的均值，也是默认值。
 ===== Reference =====
   * [[http://scikit-learn.org/stable/modules/feature_extraction.html | Feature extraction]]
   * [[http://scikit-learn.org/stable/modules/preprocessing.html | Preprocessing data]]

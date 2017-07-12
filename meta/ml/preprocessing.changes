@@ -24,3 +24,7 @@
 1499690681	123.58.160.131	E	ml:preprocessing	penchy	[多项式特征处理] 		70
 1499739642	123.58.160.131	E	ml:preprocessing	penchy	[文本特征抽取] 		4
 1499739660	123.58.160.131	E	ml:preprocessing	penchy	[多项式特征处理] 		-3
+1499772324	123.58.160.131	E	ml:preprocessing	penchy	[过滤低方差特征] 		602
+1499773334	123.58.160.131	E	ml:preprocessing	penchy	[单变量特征选择] 		1238
+1499773845	123.58.160.131	E	ml:preprocessing	penchy	[递归特征选择] 		767
+1499774638	123.58.160.131	E	ml:preprocessing	penchy	[使用模型进行特征选择] 		1393
