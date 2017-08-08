@@ -66,9 +66,9 @@ X.toarray()
 </code>
 === TF-IDF ===
 ''TF-IDF''是建立在词袋模型之上的文本特征处理方法，其计算包括以下几个步骤：
-  * 逆文档频率计算：''idf(t)=log{(1+n<sub>d</sub>)/(1+df(d,t))}+1''，其中''n<sub>d</sub>''表示总的文档数量，''df(d,t)''表示包含单词''t''的文档的数量；由该公式可以得知，如果一个词在所有文档中都出现过，那么它的逆文档频率值最小；
+  * 逆文档频率计算：$idf(t)=log\frac{1+n_d}{1+df(d,t)}+1$，其中$n_d$表示总的文档数量，$df(d,t)$表示包含单词''t''的文档的数量；由该公式可以得知，如果一个词在所有文档中都出现过，那么它的逆文档频率值最小；
   * ''TF-IDF''的计算通过词频与逆文档频率相乘获得；
-  * 在获取了一个文档的''TF-IDF''特征后，需要进一步的进行归一化，一般使用''l<sub>2</sub>''进行归一化；
+  * 在获取了一个文档的''TF-IDF''特征后，需要进一步的进行归一化，一般使用$l_2$进行归一化；
 在''scikit-learn''中，''TfidfTransformer''和''TfidfVectorizer''都可以用来获取文档的''TF-IDF''特征，不同的是，前者输入的是词袋模型向量化后的数据，而后者直接可以通过文本中获取特征，如下例所示：
 <code python>
 from sklearn.feature_extraction.text import TfidfTransformer
@@ -182,7 +182,7 @@ poly.fit_transform(X)
 #        [  1.,   2.,   3.,   4.,   6.,   9.],
 #        [  1.,   4.,   5.,  16.,  20.,  25.]])
 </code>
-以上将特征''(x<sub>1</sub>, x<sub>2</sub>)''，变换为''(1, x<sub>1</sub>, x<sub>2</sub>, x<sub>1</sub><sup>2</sup>, x<sub>1</sub>x<sub>2</sub>, x<sub>2</sub><sup>2</sup>)''，如果只需要特征间的交叉获取的新特征，则只需要对''PolynomialFeatures''指定参数''interaction_only=True''，如果不需要常数项，则指定参数''include_bias=False''。
+以上将特征$(x_1, x_2)$，变换为$(1, x_1, x_2, x_1^2, x_1 x_2, x_2^2)$，如果只需要特征间的交叉获取的新特征，则只需要对''PolynomialFeatures''指定参数''interaction_only=True''，如果不需要常数项，则指定参数''include_bias=False''。
 
 
 <alert type="warning" icon="glyphicon glyphicon-hand-right">为什么特征多项式处理后会起作用，它的原理是什么？</alert>
