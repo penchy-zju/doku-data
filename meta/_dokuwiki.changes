@@ -1,5 +1,3 @@
-1499841941	123.58.160.131	E	dl:cnn	penchy			21
-1499841980	123.58.160.131	E	dl:neuron	penchy			-2
 1501208622	123.58.160.131	C	dl:neuralnetwork	penchy	创建		126
 1501222293	123.58.160.131	E	dl:neuralnetwork	penchy			567
 1501222900	123.58.160.131	E	dl:neuralnetwork	penchy			415
@@ -20,3 +18,6 @@
 1502171895	123.58.160.131	E	dl:neuron	penchy			-84
 1502443150	123.58.160.131	C	ml:gradient_descent	penchy	创建		47
 1502443850	123.58.160.131	E	ml:gradient_descent	penchy			392
+1502789202	123.58.160.131	C	dl:softmax	penchy	创建		23
+1502789270	123.58.160.131	E	dl:softmax	penchy			6
+1502789463	123.58.160.131	E	dl:softmax	penchy			152
