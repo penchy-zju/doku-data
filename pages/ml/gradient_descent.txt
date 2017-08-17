@@ -1,2 +1,6 @@
-======= Gradient Descent：梯度下降 =======
+======= Gradient Descent：梯度下降法 =======
 **梯度下降法**（''Gradient descent''）是一个一阶最优化算法，通常也称为最速下降法。要使用梯度下降法找到一个函数的局部极小值，必须向函数上当前点对应梯度（或者是近似梯度）的反方向的规定步长距离点进行迭代搜索。--[[https://zh.wikipedia.org/wiki/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95|梯度下降]]
+
+===== 导数 =====
+{{:ml:derivative.png?400|导数}} \\ \\ 
+$f'(x) = \frac{y}{x}$
