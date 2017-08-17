@@ -1,6 +1,39 @@
 ======= Gradient Descent：梯度下降法 =======
-**梯度下降法**（''Gradient descent''）是一个一阶最优化算法，通常也称为最速下降法。要使用梯度下降法找到一个函数的局部极小值，必须向函数上当前点对应梯度（或者是近似梯度）的反方向的规定步长距离点进行迭代搜索。--[[https://zh.wikipedia.org/wiki/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95|梯度下降]]
+**梯度下降法**（''Gradient descent''）是一个一阶最优化算法，通常也称为最速下降法。要使用梯度下降法找到一个函数的局部极小值，必须向函数上当前点对应梯度（或者是近似梯度）的反方向的规定步长距离点进行迭代搜索。--[[https://zh.wikipedia.org/wiki/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95|梯度下降-维基百科]]
 
-===== 导数 =====
-{{:ml:derivative.png?400|导数}} \\ \\ 
-$f'(x) = \frac{y}{x}$
+===== 一元函数的情况 =====
+{{:ml:derivative.png?400|导数}} \\ --引自[[https://zh.wikipedia.org/wiki/%E5%AF%BC%E6%95%B0|导数-维基百科]] \\ 
+如上图所示，函数在$x$点的导数$f'(x) = \lim_{\Delta x \to 0}\frac{f(x+\Delta x)-f(x)}{\Delta x}$，那么明显的在$\Delta x \to 0$的前提下，$x$轴方向的微小变化$\Delta x$最终导致的$y$轴方向的变化为$\Delta y=f'(x)\Delta x$，在一元函数的情况下，函数在$x$点的梯度$\nabla f$等于在该点的导数，那么进一步有$\Delta y=\nabla f\Delta x$； \\
+假如现在我们要求上述函数图像的最小值，那么应该通过怎样不停的改变$x$的取值来迭代达到目的呢？直观的，我们希望每次$\Delta x$的变化都能够引起$\Delta y$为负值(''<0'')，即每次变化都能使$f(x+\Delta x)=f(x)+\Delta y$朝着小的方向变化，这样不停的迭代，我们就能够找到$f(x)$的最小值了，那么我们怎么才能保证$\Delta y$的值小于''0''呢？ \\ \\ 
+答：令$\Delta x=-\eta \nabla f$，此时明显的$\Delta y=-\eta(\nabla f)^2$小于''0''，$\eta$就是传说中的学习率，取值大于''0''；
+
+===== 多元函数扩展 =====
+我们把一元的情况扩展到多元函数，假设有函数$f(x_1,x_2,...,x_n)$，那么微小变化$\Delta X =(\Delta x_1, \Delta x_2, ..., \Delta x_n)$所引起的函数值的变化$\Delta f\approx \nabla f\Delta X$，$\nabla f=(\frac{\partial f}{\partial x_1},\frac{\partial f}{\partial x_2},...,\frac{\partial f}{\partial x_n})^T$，当我们希望求得函数$f(x_1,x_2,...,x_n)$的最小值时，同样使$\Delta X=-\eta \nabla f$即可，将此流程不停迭代，直到收敛。\\ 
+算法过程如下：
+>重复直到收敛：
+>> $x_1 \leftarrow x_1+\Delta x_1=x_1-\eta\frac{\partial f}{\partial x_1}$
+>> $x_2 \leftarrow x_2+\Delta x_2=x_2-\eta\frac{\partial f}{\partial x_2}$
+>> ... 
+>> $x_n \leftarrow x_n+\Delta x_n=x_n-\eta\frac{\partial f}{\partial x_n}$
+
+<alert type="info" icon="glyphicon glyphicon-hand-right">关于''梯度''、''导数''、''偏导数''、''方向导数''互相之间关系可以参考[[https://www.zhihu.com/question/36301367|如何直观形象的理解方向导数与梯度以及它们之间的关系？]]</alert>
+===== 梯度下降法求解线性回归 =====
+线性回归模型$f(x_1, x_2,...,x_n)=\omega_1 x_1+\omega_2 x_2 + ... + \omega_n x_n + b$中需要求解学习的参数为$(\omega_1,\omega_2,...,\omega_n,b)$，给定训练数据为$\{(x_1^1,x_2^1,...,x_n^1,y^1),(x_1^2,x_2^2,...,x_n^2,y^2),...,(x_1^m,x_2^m,...,x_n^m,y^m)\}$，一共$m$个。\\ 
+我们使用均方误差(''MSE'')作为模型的损失函数，则: 
+> $l=\frac{1}{2}\sum_{j=1}^m(f(X^j)-y^j)^2$ 
+我们使用梯度下降法求解上式的最小值，有：
+> $\frac{\partial l}{\partial x_i}=\sum_{j=1}^{m}(f(X^j)-y^j)x_i$, 
+
+> $\frac{\partial l}{\partial b}=\sum_{j=1}^{m}(f(X^j)-y^j)$
+那么使用梯度下降求解线性回归的算法流程如下：
+>重复直到收敛：
+>> $x_i \leftarrow x_i-\eta \frac{\partial l}{\partial x_i} = x_i-\eta\sum_{j=1}^{m}(f(X^j)-y^j)x_i$
+>> $b \leftarrow b - \eta \frac{\partial l}{\partial b}= b - \eta\sum_{j=1}^{m}(f(X^j)-y^j)$
+===== SGD：随机梯度下降 =====
+在上一节使用梯度下降法求解线性回归中我们可以看到，在每一次迭代更新 $x_i, b$ 时，都需要计算$\sum_{j=1}^m(f(X^j)-y^j)$，即需要所有的数据参与计算，这在 $m$ 是一个比较大的值得时候效率比较低下，于是就有了随机梯度下降法(''SGD'')。 \\ 
+随机梯度下降法跟梯度下降法的不同之处在于：梯度下降算法每次都会把所有的数据点进行计算来求梯度，而随机梯度下降算法则每次随机选一批数据点来计算梯度。其算法流程如下：
+>重复直到收敛：
+>> 随机选一批本轮没使用的数据 $m$ 个：
+>>> $x_i \leftarrow x_i-\eta \frac{\partial l}{\partial x_i} = x_i-\eta\sum_{j=1}^{m}(f(X^j)-y^j)x_i$
+>>> $b \leftarrow b - \eta \frac{\partial l}{\partial b}= b - \eta\sum_{j=1}^{m}(f(X^j)-y^j)$
+从上述算法流程中我们可以看到，相比梯度下降法的单层循环，随机梯度下降多了一层循环，里面的那层循环所使用的数据个数 $m$ 就是所谓的''batch size''，明显的，当''batch size''的值为所有数据的时候，随机梯度下降也就变成了梯度下降了。

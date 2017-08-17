@@ -19,3 +19,24 @@
 1502789270	123.58.160.131	E	dl:softmax	penchy			6
 1502789463	123.58.160.131	E	dl:softmax	penchy			152
 1502955588	123.58.160.131	E	ml:gradient_descent	penchy			86
+1502957240	123.58.160.131	E	ml:gradient_descent	penchy			393
+1502958469	123.58.160.131	E	ml:gradient_descent	penchy	[一元函数的情况] 		638
+1502959533	123.58.160.131	E	ml:gradient_descent	penchy	[多元函数扩展] 		600
+1502960537	123.58.160.131	E	ml:gradient_descent	penchy	[多元函数扩展] 		454
+1502960926	123.58.160.131	E	ml:gradient_descent	penchy	[多元函数扩展] 		78
+1502961528	123.58.160.131	E	ml:gradient_descent	penchy	[梯度下降法求解线性回归] 		294
+1502961736	123.58.160.131	E	ml:gradient_descent	penchy	[多元函数扩展] 		2
+1502963011	123.58.160.131	E	ml:gradient_descent	penchy	[梯度下降法求解线性回归] 		592
+1502968385	123.58.160.131	E	ml:gradient_descent	penchy			78
+1502968507	123.58.160.131	E	ml:gradient_descent	penchy	[一元函数的情况] 		3
+1502968668	123.58.160.131	E	ml:gradient_descent	penchy	[Gradient Descent：梯度下降法] 		13
+1502968703	123.58.160.131	E	ml:gradient_descent	penchy	[随机梯度下降] 		1
+1502969186	123.58.160.131	E	ml:gradient_descent	penchy	[随机梯度下降] 		323
+1502969473	123.58.160.131	E	ml:gradient_descent	penchy	[梯度下降法求解线性回归] 		0
+1502969612	123.58.160.131	E	ml:gradient_descent	penchy	[SGD：随机梯度下降] 		0
+1502969877	123.58.160.131	E	ml:gradient_descent	penchy	[SGD：随机梯度下降] 		245
+1502970005	123.58.160.131	E	ml:gradient_descent	penchy	[SGD：随机梯度下降] 		253
+1502970105	123.58.160.131	E	ml:gradient_descent	penchy	[SGD：随机梯度下降] 		18
+1502970285	123.58.160.131	E	ml:gradient_descent	penchy	[SGD：随机梯度下降] 		318
+1502970339	123.58.160.131	E	ml:gradient_descent	penchy	[梯度下降法求解线性回归] 		0
+1502970350	123.58.160.131	E	ml:gradient_descent	penchy	[SGD：随机梯度下降] 		0
