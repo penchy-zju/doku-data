@@ -40,3 +40,13 @@
 1502970285	123.58.160.131	E	ml:gradient_descent	penchy	[SGD：随机梯度下降] 		318
 1502970339	123.58.160.131	E	ml:gradient_descent	penchy	[梯度下降法求解线性回归] 		0
 1502970350	123.58.160.131	E	ml:gradient_descent	penchy	[SGD：随机梯度下降] 		0
+1502970924	123.58.160.131	E	ml:gradient_descent	penchy			22
+1502970979	123.58.160.131	E	ml:gradient_descent	penchy	[Reference] 		122
+1502971017	123.58.160.131	E	ml:gradient_descent	penchy	[梯度下降法求解线性回归] 		19
+1502971112	123.58.160.131	E	ml:gradient_descent	penchy	[SGD：随机梯度下降] 		28
+1502971154	123.58.160.131	E	ml:gradient_descent	penchy	[SGD：随机梯度下降] 		0
+1502971169	123.58.160.131	E	ml:gradient_descent	penchy	[SGD：随机梯度下降] 		0
+1502971197	123.58.160.131	E	ml:gradient_descent	penchy	[SGD：随机梯度下降] 		13
+1503020637	123.58.160.131	E	ml:gradient_descent	penchy	[SGD：随机梯度下降] 		12
+1502788214	127.0.0.1	E	playground:playground		外部编辑		0
+1503023336	123.58.160.131	E	playground:playground	penchy			104

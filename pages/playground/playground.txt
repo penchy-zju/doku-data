@@ -5,7 +5,7 @@ This is a simple hero unit, a simple jumbotron-style
 component for calling extra attention to featured
 content or information.
 </jumbotron>
-
+<panel type="success" title="Title of Panel" subtitle="Subtitle" icon="fa fa-home">$x^2+y^2=z^2$</panel>
 <panel type="default" title="Title of Panel" subtitle="Subtitle" icon="fa fa-home">
 Panel content
 </panel>

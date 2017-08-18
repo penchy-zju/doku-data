@@ -19,7 +19,7 @@
 <alert type="info" icon="glyphicon glyphicon-hand-right">关于''梯度''、''导数''、''偏导数''、''方向导数''互相之间关系可以参考[[https://www.zhihu.com/question/36301367|如何直观形象的理解方向导数与梯度以及它们之间的关系？]]</alert>
 ===== 梯度下降法求解线性回归 =====
 线性回归模型$f(x_1, x_2,...,x_n)=\omega_1 x_1+\omega_2 x_2 + ... + \omega_n x_n + b$中需要求解学习的参数为$(\omega_1,\omega_2,...,\omega_n,b)$，给定训练数据为$\{(x_1^1,x_2^1,...,x_n^1,y^1),(x_1^2,x_2^2,...,x_n^2,y^2),...,(x_1^m,x_2^m,...,x_n^m,y^m)\}$，一共$m$个。\\ 
-我们使用均方误差(''MSE'')作为模型的损失函数，则: 
+我们使用均方误差(''MSE, Mean Square Error'')作为模型的损失函数，则: 
 > $l=\frac{1}{2}\sum_{j=1}^m(f(X^j)-y^j)^2$ 
 我们使用梯度下降法求解上式的最小值，有：
 > $\frac{\partial l}{\partial x_i}=\sum_{j=1}^{m}(f(X^j)-y^j)x_i$, 
@@ -30,10 +30,12 @@
 >> $x_i \leftarrow x_i-\eta \frac{\partial l}{\partial x_i} = x_i-\eta\sum_{j=1}^{m}(f(X^j)-y^j)x_i$
 >> $b \leftarrow b - \eta \frac{\partial l}{\partial b}= b - \eta\sum_{j=1}^{m}(f(X^j)-y^j)$
 ===== SGD：随机梯度下降 =====
-在上一节使用梯度下降法求解线性回归中我们可以看到，在每一次迭代更新 $x_i, b$ 时，都需要计算$\sum_{j=1}^m(f(X^j)-y^j)$，即需要所有的数据参与计算，这在 $m$ 是一个比较大的值得时候效率比较低下，于是就有了随机梯度下降法(''SGD'')。 \\ 
+在上一节使用梯度下降法求解线性回归中我们可以看到，在每一次迭代更新 $x_i, b$ 时，都需要计算$\sum_{j=1}^m(f(X^j)-y^j)$，即需要所有的数据参与计算，这在 $m$ 是一个比较大的值得时候效率比较低下，于是就有了随机梯度下降法(''SGD,Stochastic Gradient Descent'')。 \\ 
 随机梯度下降法跟梯度下降法的不同之处在于：梯度下降算法每次都会把所有的数据点进行计算来求梯度，而随机梯度下降算法则每次随机选一批数据点来计算梯度。其算法流程如下：
 >重复直到收敛：
->> 随机选一批本轮没使用的数据 $m$ 个：
->>> $x_i \leftarrow x_i-\eta \frac{\partial l}{\partial x_i} = x_i-\eta\sum_{j=1}^{m}(f(X^j)-y^j)x_i$
->>> $b \leftarrow b - \eta \frac{\partial l}{\partial b}= b - \eta\sum_{j=1}^{m}(f(X^j)-y^j)$
-从上述算法流程中我们可以看到，相比梯度下降法的单层循环，随机梯度下降多了一层循环，里面的那层循环所使用的数据个数 $m$ 就是所谓的''batch size''，明显的，当''batch size''的值为所有数据的时候，随机梯度下降也就变成了梯度下降了。
+>> 随机选一批本轮没使用的数据 $p$ 个 ($p\leq m$)：
+>>> $x_i \leftarrow x_i-\eta \frac{\partial l}{\partial x_i} = x_i-\eta\sum_{j=1}^{p}(f(X^j)-y^j)x_i$
+>>> $b \leftarrow b - \eta \frac{\partial l}{\partial b}= b - \eta\sum_{j=1}^{p}(f(X^j)-y^j)$
+从上述算法流程中我们可以看到，相比梯度下降法的单层循环，随机梯度下降多了一层循环，里面的那层循环所使用的数据个数 $p$ 就是所谓的''batch size''，明显的，当''batch size''的值为所有数据的时候，即 $p=m$ ，随机梯度下降也就变成了梯度下降了。
+===== Reference =====
+  - [[http://neuralnetworksanddeeplearning.com/chap1.html#learning_with_gradient_descent|learning_with_gradient_descent]]
