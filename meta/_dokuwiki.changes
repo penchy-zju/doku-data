@@ -1,20 +1,4 @@
-1501222934	123.58.160.131	E	dl:neuralnetwork	penchy			-129
-1501226730	123.58.160.131	E	dl:neuralnetwork	penchy			1340
-1501488361	123.58.160.131	C	start	penchy	创建		28
-1501488430	123.58.160.131	E	sidebar	penchy			-27
-1502096632	123.58.160.131	E	playground:playground	penchy			19
-1502096718	123.58.160.131	E	dl:neuron	penchy			2
-1502097133	123.58.160.131	E	dl:neuron	penchy			5
-1502097357	123.58.160.131	E	dl:neuron	penchy			15
-1502097647	123.58.160.131	E	playground:playground	penchy			125
-1502103781	123.58.160.131	E	ml:adaboost	penchy			-112
-1502103926	123.58.160.131	E	ml:adaboost	penchy			-80
-1502104145	123.58.160.131	E	dl:neuron	penchy			2
-1502161424	123.58.160.131	E	ml:preprocessing	penchy	[文本特征抽取] 		-36
-1502161560	123.58.160.131	E	ml:preprocessing	penchy	[多项式特征处理] 		-103
-1502171895	123.58.160.131	E	dl:neuron	penchy			-84
-1502443150	123.58.160.131	C	ml:gradient_descent	penchy	创建		47
-1502443850	123.58.160.131	E	ml:gradient_descent	penchy			392
+1502788214	127.0.0.1	E	playground:playground		外部编辑		0
 1502789202	123.58.160.131	C	dl:softmax	penchy	创建		23
 1502789270	123.58.160.131	E	dl:softmax	penchy			6
 1502789463	123.58.160.131	E	dl:softmax	penchy			152
@@ -48,5 +32,4 @@
 1502971169	123.58.160.131	E	ml:gradient_descent	penchy	[SGD：随机梯度下降] 		0
 1502971197	123.58.160.131	E	ml:gradient_descent	penchy	[SGD：随机梯度下降] 		13
 1503020637	123.58.160.131	E	ml:gradient_descent	penchy	[SGD：随机梯度下降] 		12
-1502788214	127.0.0.1	E	playground:playground		外部编辑		0
 1503023336	123.58.160.131	E	playground:playground	penchy			104
