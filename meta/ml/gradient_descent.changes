@@ -32,3 +32,5 @@
 1503020637	123.58.160.131	E	ml:gradient_descent	penchy	[SGD：随机梯度下降] 		12
 1503647231	123.58.160.131	E	ml:gradient_descent	penchy	[梯度下降法求解线性回归] 		45
 1503647280	123.58.160.131	E	ml:gradient_descent	penchy	[SGD：随机梯度下降] 		22
+1503977238	123.58.160.131	E	ml:gradient_descent	penchy	[梯度下降法求解线性回归] 		25
+1503977313	123.58.160.131	E	ml:gradient_descent	penchy	[SGD：随机梯度下降] 		25
