@@ -18,3 +18,4 @@
 1503647280	123.58.160.131	E	ml:gradient_descent	penchy	[SGD：随机梯度下降] 		22
 1503977238	123.58.160.131	E	ml:gradient_descent	penchy	[梯度下降法求解线性回归] 		25
 1503977313	123.58.160.131	E	ml:gradient_descent	penchy	[SGD：随机梯度下降] 		25
+1504431647	112.10.94.23	E	dl:softmax	penchy			28
