@@ -18,3 +18,8 @@
 1503977238	123.58.160.131	E	ml:gradient_descent	penchy	[梯度下降法求解线性回归] 		25
 1503977313	123.58.160.131	E	ml:gradient_descent	penchy	[SGD：随机梯度下降] 		25
 1504431647	112.10.94.23	E	dl:softmax	penchy			28
+1506408041	123.58.160.131	C	dl:padding	penchy	创建		32
+1506408787	123.58.160.131	E	dl:padding	penchy			420
+1506409099	123.58.160.131	E	dl:padding	penchy			108
+1506409133	123.58.160.131	E	dl:padding	penchy	[Reference] 		14
+1506409874	123.58.160.131	E	dl:padding	penchy	[CNN中的padding] 		41

@@ -1,0 +1,11 @@
+======= CNN中的padding =======
+在''CNN''中，卷积和池化是一种很常见的操作，一般认为通过卷积和池化可以降低输入图像的维度，也可以达到一定的旋转不变性和平移不变性；\\ 
+而在这种操作过程中，图像(或者特征图)的尺寸是怎么变化的呢？\\ 
+本文主要描述''TensorFlow''中，使用不同方式做填充后(''padding = 'SAME' or 'VALID' '')的''tensor''的''size''变化。
+
+===== 'SAME' =====
+
+
+===== 'VALID' =====
+===== Reference =====
+  * [[https://www.tensorflow.org/api_guides/python/nn#Convolution | Neural Network - Convolution]]
