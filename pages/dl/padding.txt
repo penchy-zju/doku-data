@@ -3,9 +3,72 @@
 而在这种操作过程中，图像(或者特征图)的尺寸是怎么变化的呢？\\ 
 本文主要描述''TensorFlow''中，使用不同方式做填充后(''padding = 'SAME' or 'VALID' '')的''tensor''的''size''变化。
 
+===== Input Shape =====
+对于输入，''tf''中一般用一个''4-D''的''tensor''来表示，其''shape''为''[batch_size, in_width, in_height, channels]''，卷积核一般也用一个''4-D''的''tensor''来表示，其''shape''为''[filter_width, filter_height, input_channels, output_channels]''，卷积核移动的步长''strides''一般为''[1, strides, strides, 1]''.
+
 ===== 'SAME' =====
+如果''padding''模式选择了''SAME''，那么就需要在必要的时候使用''0''进行填充，给定输入尺寸，移动步长后，输出尺寸的计算公式如下：
+$$output\_size=\lceil\frac{input\_size}{strides}\rceil$$
+<code python>
+out_height = ceil(float(in_height) / float(strides[1]))
+out_width  = ceil(float(in_width) / float(strides[2]))
+</code>
 
-
+此时，需要填充的''0''的数量的计算公式为：
+$$ padding\_num = \lgroup\begin{matrix}
+max(kernel\_size - strides, 0) & if\; input\_size\; mod\; strides = 0 \\
+max(kernel\_size - (input\_size\; mod\; strides), 0) & if\; input\_size\; mod\; strides \neq 0
+ \end{matrix}$$
+<code python>
+if (in_height % strides[1] == 0):
+  pad_along_height = max(filter_height - strides[1], 0)
+else:
+  pad_along_height = max(filter_height - (in_height % strides[1]), 0)
+if (in_width % strides[2] == 0):
+  pad_along_width = max(filter_width - strides[2], 0)
+else:
+  pad_along_width = max(filter_width - (in_width % strides[2]), 0)
+</code>
+确定了要填充了总的数量后，左边/上边要填充的''0''的数量为：$$p_{left\_or\_top}=padding\_num/2$$，右边/下边要填充的''0''的数量为：$$p_{right\_or\_bottom}=padding\_num - p_{left\_or\_top}$$
+<code python>
+pad_top = pad_along_height // 2
+pad_bottom = pad_along_height - pad_top
+pad_left = pad_along_width // 2
+pad_right = pad_along_width - pad_left
+</code>
 ===== 'VALID' =====
+如果选择了''VALID''模式，那么情况就比较简单了，确定了输入尺寸、卷积核尺寸以及步长后，输出的尺寸大小为：
+$$output\_size=\lceil \frac{input\_size - kernel\_size + 1}{strides} \rceil$$
+
+<code python>
+out_height = ceil(float(in_height - filter_height + 1) / float(strides[1]))
+out_width  = ceil(float(in_width - filter_width + 1) / float(strides[2]))
+</code>
+===== 一个例子 =====
+比如输入图片是''28*28''的单通道图片，其输入''shape''为''[batch_size, 28, 28, 1]''; \\ 
+  * 第一层卷积为''32''个''5*5''卷积核，其''shape''为''[5,5,1,32]''，其步长''strides''为''[1,1,1,1]''，紧接着是第一层的''2*2''的''max_pooling''，其形状为''[1,2,2,1]''，其步长''strides''为''[1,2,2,1]''; \\ 
+  * 第二层卷积为''64''个''5*5''卷积核，其''shape''为''[5,5,32,64]''，其步长''strides''为''[1,1,1,1]''，紧接着是第一层的''2*2''的''max_pooling''，其形状为''[1,2,2,1]''，其步长''strides''为''[1,2,2,1]''; \\ 
+  * ''padding''全部使用''SAME''; \\ 
+那么图像的尺寸经过以上两次卷积，两次池化后的变化如下： \\ 
+''[batch_size, 28, 28, 1]'' \\ 
+↓ (第一层卷积)\\  
+''[batch_size, 28, 28, 32]'' \\ 
+↓ (第一层池化)\\  
+''[batch_size, 14, 14, 32]'' \\ 
+↓ (第二层卷积)\\  
+''[batch_size, 14, 14, 64]'' \\ 
+↓ (第二层池化)\\  
+''[batch_size, 7, 7, 64]'' \\ 
+
+如果上述所有的卷积核，池化核以及步长都保持不变，但是全部使用''VALID''模式，那么尺寸变化如下：\\ 
+''[batch_size, 28, 28, 1]'' \\ 
+↓ (第一层卷积)\\  
+''[batch_size, 24, 24, 32]'' \\ 
+↓ (第一层池化)\\  
+''[batch_size, 12, 12, 32]'' \\ 
+↓ (第二层卷积)\\  
+''[batch_size, 8, 8, 64]'' \\ 
+↓ (第二层池化)\\  
+''[batch_size, 4, 4, 64]'' \\ 
 ===== Reference =====
   * [[https://www.tensorflow.org/api_guides/python/nn#Convolution | Neural Network - Convolution]]

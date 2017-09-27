@@ -3,3 +3,15 @@
 1506409099	123.58.160.131	E	dl:padding	penchy			108
 1506409133	123.58.160.131	E	dl:padding	penchy	[Reference] 		14
 1506409874	123.58.160.131	E	dl:padding	penchy	[CNN中的padding] 		41
+1506413539	123.58.160.131	E	dl:padding	penchy	['SAME'] 		1168
+1506414063	123.58.160.131	E	dl:padding	penchy	['SAME'] 		651
+1506414416	123.58.160.131	E	dl:padding	penchy	['VALID'] 		402
+1506414580	123.58.160.131	E	dl:padding	penchy	[Input Shape] 		4
+1506415911	123.58.160.131	E	dl:padding	penchy	[Reference] 		1018
+1506416075	123.58.160.131	E	dl:padding	penchy	[一个例子] 		36
+1506416290	123.58.160.131	E	dl:padding	penchy	[一个例子] 		405
+1506416333	123.58.160.131	E	dl:padding	penchy	[一个例子] 		3
+1506416430	123.58.160.131	E	dl:padding	penchy	[一个例子] 		0
+1506416952	123.58.160.131	E	dl:padding	penchy	['SAME'] 		2
+1506421965	123.58.160.131	E	dl:padding	penchy	[一个例子] 		-48
+1506477518	123.58.160.131	E	dl:padding	penchy	[Input Shape] 		-56
